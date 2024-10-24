@@ -1,0 +1,29 @@
+server:
+  port: 9090
+
+spring:
+  main:
+    web-application-type: reactive
+  application.name: backend-gateway-client
+  cloud:
+    gateway:
+      routes:
+        - id: resources
+          uri: http://backend-resources:9191/api
+          predicates:
+            Path=/api/**
+      default-filters: TokenRelay=
+  security:
+    oauth2:
+      client:
+        registration:
+          backend-gateway-client:
+            provider: my-provider
+            client-id: backend-gateway-client
+            client-secret: KueUiTrgpTfzboWtuuO1g6dWOdicxbOF
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://backend-gateway-client:9090/login/oauth2/code/{registrationId}"
+            scope: openid
+        provider:
+          my-provider:
+            issuer-uri: http://backend-keycloak-auth:8080/auth/realms/ITM

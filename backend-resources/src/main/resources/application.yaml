@@ -1,0 +1,19 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: backend-resources
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://backend-keycloak-auth:8080/auth/realms/ITM
+
+keycloak:
+  realm: ITM
+  resource: backend-resources
+  auth-server-url: http://backend-keycloak-auth:8080/auth
+  credentials:
+    secret: x2lpgp8rMicJxS0uwm5HELx7RyEv4R79
