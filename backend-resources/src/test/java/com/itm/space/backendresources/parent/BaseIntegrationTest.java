@@ -1,4 +1,4 @@
-package com.itm.space.backendresources;
+package com.itm.space.backendresources.parent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,18 +12,17 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
-
 @SpringBootTest
 @AutoConfigureMockMvc
 public abstract class BaseIntegrationTest {
+
+    @Autowired
+    protected MockMvc mvc;
 
     private final ObjectWriter contentWriter = new ObjectMapper()
             .configure(SerializationFeature.WRAP_ROOT_VALUE, false)
             .writer()
             .withDefaultPrettyPrinter();
-
-    @Autowired
-    protected MockMvc mvc;
 
     protected MockHttpServletRequestBuilder requestToJson(MockHttpServletRequestBuilder requestBuilder) {
         return requestBuilder

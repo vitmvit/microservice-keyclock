@@ -1,4 +1,4 @@
-package com.itm.space.backendresources.controller;
+package com.itm.space.backendresources.controller.advice;
 
 import com.itm.space.backendresources.exception.BackendResourcesException;
 import org.springframework.http.HttpStatus;
